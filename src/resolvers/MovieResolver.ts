@@ -30,25 +30,25 @@ import {
   @Resolver()
   export class MovieResolver {
   
-      // Create a mutation to update | change the database
-      // Return t/f worked
+    // Create a mutation to update | change the database
+    // Return t/f worked
+    @Mutation(() => Boolean)
   
-    @Mutation(() => Movie)
-  
-        // type-graphql decorator
-      // explicitly create a variable, title, and
-      // set the typescript type, String.
-      // The annotation: @Arg('title', () => String)
-      // is for type-graphql and the graphql schema
-      // where 'title' is the argument and String is the type
-      // The two "title"s, here, don't have to be the same
-      // Also, type-graphql can actually infer the String type
-      // Sometimes type-graphql can't infer the String, so
-      // it needs to be explicit, as in:
-      // @Arg('title', () => String, {nullable: true}) title: string | null
+    // type-graphql decorator
+    // explicitly create a variable, title, and
+    // set the typescript type, String.
+    // The annotation: @Arg('title', () => String)
+    // is for type-graphql and the graphql schema
+    // where 'title' is the argument and String is the type
+    // The two "title"s, here, don't have to be the same
+    // Also, type-graphql can actually infer the String type
+    // Sometimes type-graphql can't infer the String, so
+    // it needs to be explicit, as in:
+    // @Arg('title', () => String, {nullable: true}) title: string | null
     async createMovie(@Arg("options", () => MovieInput) options: MovieInput) {
-      const movie = await Movie.create(options).save();
-      return movie;
+        //const movie = await Movie.create(options).save();
+        await Movie.insert(options);
+        return true;
     }
   
     @Mutation(() => Boolean)
