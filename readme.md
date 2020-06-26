@@ -26,9 +26,10 @@ CRUD operations
 * In the MovieResolver.ts file, update/change your database with a mutation decorator from type-grpahql.
 * Make it an export class and import it in the Index.ts file.
 * createMovie @Arg sets the table fields
-* @Query movies 
-
-
+* @Query movies to find all movies
+* typeorm entity fields are here: https://github.com/typeorm/typeorm/blob/2c90e1c05f9c1dfc66bc47510e44d953ae31566a/docs/entities.md
+* add ObjectType() and @Fields() to the entity
+* Set the return type of the resolver in MovieResolver
 
 
 
