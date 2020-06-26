@@ -28,7 +28,7 @@ CRUD operations
 * createMovie @Arg sets the table fields
 * @Query movies to find all movies
 * typeorm entity fields are here: https://github.com/typeorm/typeorm/blob/2c90e1c05f9c1dfc66bc47510e44d953ae31566a/docs/entities.md
-* add ObjectType() and @Fields() to the entity
+* add ObjectType() and @Fields() to the entity, so that the same class provides the @fields for GraphQL and the Columns for the database
 * Set the return type of the resolver in MovieResolver
 
 
