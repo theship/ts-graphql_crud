@@ -4,6 +4,7 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
+import { MovieResolver } from "./resolvers/MovieResolver";
 
 // async await function wrapped in parenthesis, calling itself
 (async () => {
@@ -24,7 +25,7 @@ import { HelloWorldResolver } from "./resolvers/HelloWorldResolver";
     // graphql schema with type-graphql
     schema: await buildSchema({
 
-      resolvers: [HelloWorldResolver],
+      resolvers: [HelloWorldResolver, MovieResolver],
       validate: true
     }),
     // graphql context
