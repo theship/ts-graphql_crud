@@ -31,8 +31,9 @@ import {
   export class MovieResolver {
   
     // Create a mutation to update | change the database
-    // Return t/f worked
-    @Mutation(() => Boolean)
+
+    // return value for resolver
+    @Mutation(() => Movie)
   
     // type-graphql decorator
     // explicitly create a variable, title, and
@@ -45,17 +46,38 @@ import {
     // Sometimes type-graphql can't infer the String, so
     // it needs to be explicit, as in:
     // @Arg('title', () => String, {nullable: true}) title: string | null
+
+    // In playground, since we're returning a movie object, 
+    // create movie has to provide the type string:
+    // mutation{
+    //     createMovie(
+    //       options: {
+    //         title: "barbara",
+    //         minutes: 47
+    //       }
+    //     ) {
+    //           id
+    //           title
+    //           minutes
+    //     }
+    // }
+
+    // The resolver
     async createMovie(@Arg("options", () => MovieInput) options: MovieInput) {
-        //const movie = await Movie.create(options).save();
-        await Movie.insert(options);
-        return true;
+        //const movie = await Movie.insert(options);
+        //return JSON.parse(JSON.stringify(movie)) ;
+
+        // The database logic
+        const movie = await Movie.create(options).save();
+        return movie;
     }
-  
+
     @Mutation(() => Boolean)
     async updateMovie(
       @Arg("id", () => Int) id: number,
       @Arg("input", () => MovieUpdateInput) input: MovieUpdateInput
     ) {
+        // database logic
       await Movie.update({ id }, input);
       return true;
     }

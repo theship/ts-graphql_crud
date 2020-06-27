@@ -31,6 +31,44 @@ CRUD operations
 * add ObjectType() and @Fields() to the entity, so that the same class provides the @fields for GraphQL and the Columns for the database
 * Set the return type of the resolver in MovieResolver
 
+Playground queries
 
+Create & Read together
+mutation{
+  createMovie(
+    options: {
+      title: "barbara",
+      minutes: 47
+    }
+  ) {
+    	id
+    	title
+    	minutes
+  }
+}
+Read
+{
+  movies{
+  	id
+    title
+    minutes
+	}
+}
+
+Update
+
+mutation {
+  updateMovie(id: 4
+    input: {
+      title: "barb"
+    }
+  )
+}
+
+Delete
+
+mutation{
+  deleteMovie(id:5)
+}
 
 
